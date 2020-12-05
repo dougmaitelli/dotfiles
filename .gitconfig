@@ -5,3 +5,10 @@
   name = Douglas Maitelli
 [push]
   default = simple
+[alias]
+  conflicts = !git ls-files --unmerged | cut -f2 | sort -u
+  count-conflicts = !grep -c '^=======$'
+  count-all-conflicts = !grep -c '^=======$' $(git conflicts)
+
+[includeIf "gitdir:~/gitWork/"]
+  path = .gitconfig-work

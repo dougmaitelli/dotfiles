@@ -1,7 +1,5 @@
 # ~/.dotfiles
 
-![demo](https://i.redd.it/qmogiazm88821.png)
-
 ## This will install
 - [Fisher](https://github.com/jorgebucaran/fisher)
 - [bobthefish theme](https://github.com/oh-my-fish/theme-bobthefish)
@@ -23,7 +21,6 @@
 - [openbox](https://github.com/danakj/openbox)
 - obmenu-generator
 - [tint2](https://gitlab.com/o9000/tint2)
-- [Tryone Compton](https://aur.archlinux.org/packages/compton-tryone-git/) with kawase blur
 - lightdm
 - light-locker
 - oblogout
