@@ -1,0 +1,221 @@
+#---------------------------------------------
+# TINT2 CONFIG FILE
+#---------------------------------------------
+
+#---------------------------------------------
+# BACKGROUND AND BORDER
+#---------------------------------------------   
+
+# Background 1: Panel
+rounded = 0
+border_width = 1
+border_sides = T
+background_color = #0D0F31 20
+border_color = #222222 30
+background_color_hover = #0D0F31 20
+border_color_hover = #222222 30
+background_color_pressed = #0D0F31 20
+border_color_pressed = #222222 30
+
+# Background 2: Active task
+rounded = 0
+border_width = 4
+border_sides = B
+#background_color = #FF16B0 30
+border_color = #FF16B0 80
+background_color_hover = #FF16B0 50
+border_color_hover = #FF16B0 90
+background_color_pressed = #FF16B0 70
+border_color_pressed = #FF16B0 100
+
+# Background 3: Default task, Iconified task
+rounded = 0
+border_width = 3
+border_sides = B
+#background_color = #FFFFFF 0
+border_color = #FFFFFF 20
+background_color_hover = #FFFFFF 30
+border_color_hover = #FFFFFF 50
+background_color_pressed = #FFFFFF 50
+border_color_pressed = #FFFFFF 80
+
+# Background 4: Urgent task
+rounded = 0
+border_width = 3
+border_sides = B
+background_color = #00A9FF 30
+border_color = #00A9FF 80
+background_color_hover = #00A9FF 50
+border_color_hover = #00A9FF 100
+background_color_pressed = #00A9FF 70
+border_color_pressed = #00A9FF 100
+
+# Background 5: Inactive taskbar
+rounded = 0
+border_width = 0
+border_sides = TBLR
+background_color = #000000 0
+border_color = #000000 0
+background_color_hover = #000000 0
+border_color_hover = #000000 0
+background_color_pressed = #000000 0
+border_color_pressed = #000000 0
+
+# Background 6: Active taskbar
+rounded = 0
+border_width = 0
+border_sides = B
+background_color = #000000 0
+border_color = #00A9FF 60
+background_color_hover = #000000 0
+border_color_hover = #00A9FF 70
+background_color_pressed = #000000 0
+border_color_pressed = #00A9FF 80
+
+# Background 7: Tooltip
+rounded = 0
+border_width = 2
+border_sides = TBLR
+background_color = #000000 50
+border_color = #222222 30
+background_color_hover = #000000 50
+border_color_hover = #222222 30
+background_color_pressed = #000000 50
+border_color_pressed = #222222 30
+
+# Background 8: Systray, Bat, Clock
+rounded = 0
+border_width = 3
+border_sides = B
+#background_color = #FF16B0 30
+border_color = #FF16B0 80
+background_color_hover = #FF16B0 30
+border_color_hover = #000000 0
+background_color_pressed = #FF16B0 30
+border_color_pressed = #000000 0
+
+#---------------------------------------------
+# PANEL
+#---------------------------------------------
+panel_monitor = all
+panel_layer = top
+panel_position = bottom left horizontal
+panel_size = 100% 48
+panel_margin = 0 0
+panel_padding = 5 0 0
+font_shadow = 0
+panel_background_id = 1
+wm_menu = 1
+panel_dock = 0
+panel_items = L:TSBC
+
+#---------------------------------------------
+# LAUNCHER
+#---------------------------------------------
+launcher_padding = 7 3
+launcher_background_id = 1
+launcher_icon_size = 34
+launcher_icon_asb = 100 0 0
+launcher_icon_theme = Papirus-Dark
+launcher_icon_theme_override = 1
+launcher_item_app = /usr/share/applications/jgmenu.desktop
+launcher_item_app = /usr/share/applications/fff.desktop
+launcher_item_app = /usr/share/applications/firefox-developer-edition.desktop
+launcher_item_app = /usr/share/applications/chromium.desktop
+launcher_item_app = /usr/share/applications/urxvt.desktop
+launcher_item_app = /usr/share/applications/code-oss.desktop
+launcher_item_app = /usr/share/applications/steam.desktop
+
+#---------------------------------------------
+# SEPARATOR
+#---------------------------------------------
+
+separator = new
+separator_style = line
+separator_size = 1
+separator_padding = 0 5
+
+#---------------------------------------------
+# TASKBAR
+#---------------------------------------------
+taskbar_mode = multi_desktop
+taskbar_padding = 10 0 0
+taskbar_background_id = 1
+taskbar_active_background_id = 1
+taskbar_name_background_id = 5
+taskbar_name_active_background_id = 6
+taskbar_sort_order = none
+task_align = left
+
+#---------------------------------------------
+# TASKS
+#---------------------------------------------
+task_icon = 1
+task_text = 0
+task_width = 40
+task_centered = 1
+urgent_nb_of_blink = 10
+task_padding = 3 3
+task_font = FiraCode Nerd Font Mono 10
+task_font_color = #FFFFFF 70
+task_active_font_color = #FFFFFF 85
+task_background_id = 3
+task_active_background_id = 2
+task_urgent_background_id = 4
+task_iconified_background_id = 3
+task_icon_asb = 50 0 0
+task_active_icon_asb = 100 0 0
+
+#---------------------------------------------
+# TOOLTIPS
+#---------------------------------------------
+tooltip = 1
+tooltip_padding = 5 5
+tooltip_show_timeout = 0
+tooltip_hide_timeout = 0
+tooltip_background_id = 7
+tooltip_font = Sans 10
+tooltip_font_color = #FFFFFF 60
+
+#---------------------------------------------
+# SYSTRAYBAR
+#---------------------------------------------
+systray = 1
+systray_padding = 3 10 0
+systray_background_id = 8
+systray_sort = ascending
+
+#---------------------------------------------
+# BATTERY
+#---------------------------------------------
+battery = 1
+battery_low_status = 10
+battery_low_cmd = notify-send "Battery Low"
+battery_hide = 98
+bat1_font = FiraCode Nerd Font Mono 10
+bat2_font = FiraCode Nerd Font Mono 10
+battery_font_color = #FFFFFF 80
+battery_padding = 5 5
+battery_background_id = 8
+
+#---------------------------------------------
+# CLOCK
+#---------------------------------------------
+time1_format = %H:%M
+time1_font = FiraCode Nerd Font Mono 14
+time2_format = %a %d %B
+time2_font = FiraCode Nerd Font Mono 10
+clock_font_color = #FFFFFF 80
+clock_padding = 5 5
+clock_background_id = 8
+clock_tooltip = %A %d %B %Y
+#clock_lclick_command = x-terminal-emulator -e alsamixer
+#clock_rclick_command = x-terminal-emulator -e htop
+
+#---------------------------------------------
+# MOUSE ACTION ON TASK
+#---------------------------------------------
+mouse_middle = none
+mouse_right = none
+mouse_scroll_up = none
+mouse_scroll_down = none

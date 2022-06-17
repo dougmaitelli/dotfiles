@@ -1,0 +1,17 @@
+- clean: ['~']
+
+- link:
+    ~/.gitconfig: gitconfig
+    ~/.vimrc: vimrc
+    ~/.Xresources: Xresources
+    ~/.config/openbox:
+        path: config/openbox/
+        create: true
+    ~/.config/obmenu-generator:
+        path: config/obmenu-generator/
+        create: true
+    ~/.config/tint2:
+        path: config/tint2/
+        create: true
+
+
