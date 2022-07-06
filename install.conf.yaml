@@ -12,8 +12,15 @@
     ~/.config/fish/functions/fish_greeting.fish:
         path: config/fish/functions/fish_greeting.fish
         create: true
+    ~/.config/fish/functions/fisher.fish:
+        path: config/fish/functions/fisher.fish
+        create: true
     ~/.config/fish/functions/sync_vscode_extensions.fish:
         path: config/fish/functions/sync_vscode_extensions.fish
+        create: true
+
+    ~/.vim/autoload/plug.vim:
+        path: vim/autoload/plug.vim
         create: true
 
     ~/.config/Code:

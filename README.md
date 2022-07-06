@@ -4,7 +4,6 @@
 
 ## This will install
 - [Fisher](https://github.com/jorgebucaran/fisher)
-- [bobthefish theme](https://github.com/oh-my-fish/theme-bobthefish)
 - [vim-plug](https://github.com/junegunn/vim-plug)
 - ~/.dotfiles
 
@@ -31,7 +30,6 @@
 ### Recommended to Install
 - jgmenu
 - [fff](https://github.com/dylanaraps/fff)
-- [feh](https://github.com/derf/feh)
 - [Flameshot](https://github.com/lupoDharkael/flameshot)
 - volumeicon
 - [rofi](https://github.com/davatorium/rofi)
