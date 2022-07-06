@@ -1,0 +1,89 @@
+!! menu background
+menu.items.bg: flat
+menu.items.bg.color: #0d0f31
+menu.overlap.x: -6
+
+!! menu text
+menu.items.text.color: #ffffff
+menu.items.justify: left
+menu.items.disabled.text.color: #4d5066
+
+!! menu separator
+menu.separator.padding.height: 2
+menu.separator.color: #0d0f31
+
+!! menu border
+menu.border.width: 6
+menu.border.color: #0d0f31
+
+!! menu headers
+menu.title.bg: flat
+menu.title.bg.color: #0d0f31
+menu.title.text.color: #ffffff
+menu.title.text.justify: center
+
+!! selected menu item
+menu.items.active.bg: flat
+menu.items.active.bg.color: #ff16b0
+menu.items.active.text.color: #ffffff
+
+!! titlebar
+window.active.title.bg: flat
+window.active.title.bg.color: #0d0f31
+window.inactive.title.bg: flat
+window.inactive.title.bg.color: #0d0f31
+
+!! titlebar text
+window.label.text.justify: center
+window.active.label.bg: parentrelative
+window.active.label.text.color: #ffffff
+window.inactive.label.bg: parentrelative
+window.inactive.label.text.color: #ffffff
+
+!! window buttons
+window.*.button.*.bg: parentrelative
+window.active.button.*.hover.bg: flat
+window.inactive.button.*.hover.bg: parentrelative
+window.*.button.*.pressed.bg: flat
+
+window.*.button.*.image.color: #ffffff
+window.*.button.*.hover.bg.color: #0d0f31
+window.*.button.*.hover.image.color: #ff16b0
+window.*.button.*.pressed.bg.color: #ff16b0
+window.*.button.disabled.image.color: #4d5066
+
+!! borders
+window.active.border.color: #0d0f31
+window.inactive.border.color: #0d0f31
+padding.width: 8
+padding.height: 8
+window.client.padding.width: 0
+window.client.padding.height: 0
+border.width: 0
+window.handle.width: 2
+
+window.active.client.color:  #0d0f31
+window.inactive.client.color:  #0d0f31
+
+window.active.handle.bg: flat
+window.active.handle.bg.color: #0d0f31
+window.inactive.handle.bg: flat
+window.inactive.handle.bg.color: #0d0f31
+
+window.active.grip.bg: flat
+window.active.grip.bg.color: #0d0f31
+window.inactive.grip.bg: flat
+window.inactive.grip.bg.color: #0d0f31
+
+!! on-screen displays
+osd.border.width: 1
+osd.border.color: #0d0f31
+osd.label.text.color: #ffffff
+osd.bg: flat solid
+osd.bg.color: #0d0f31
+osd.label.bg: flat solid
+osd.label.bg.color: #0d0f31
+osd.hilight.bg: flat solid
+osd.hilight.bg.color: #ff16b0
+osd.unhilight.bg: flat solid
+osd.unhilight.bg.color: #0d0f31

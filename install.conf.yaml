@@ -2,8 +2,32 @@
 
 - link:
     ~/.gitconfig: gitconfig
+    ~/.gtkrc-2.0: gtkrc-2.0
     ~/.vimrc: vimrc
     ~/.Xresources: Xresources
+
+    ~/.config/fish/config.fish:
+        path: config/fish/config.fish
+        create: true
+    ~/.config/fish/functions/fish_greeting.fish:
+        path: config/fish/functions/fish_greeting.fish
+        create: true
+    ~/.config/fish/functions/sync_vscode_extensions.fish:
+        path: config/fish/functions/sync_vscode_extensions.fish
+        create: true
+
+    ~/.config/Code:
+        path: config/Code/
+        create: true
+    ~/.config/conky:
+        path: config/conky/
+        create: true
+    ~/.config/gtk-3.0:
+        path: config/gtk-3.0/
+        create: true
+    ~/.config/jgmenu:
+        path: config/jgmenu/
+        create: true
     ~/.config/openbox:
         path: config/openbox/
         create: true
@@ -13,5 +37,14 @@
     ~/.config/tint2:
         path: config/tint2/
         create: true
+    ~/.config/volumeicon:
+        path: config/volumeicon/
+        create: true
 
+    ~/.themes/MyDark:
+        path: themes/MyDark/
+        create: true
+    ~/.themes/MyNeon:
+        path: themes/MyNeon/
+        create: true
 
