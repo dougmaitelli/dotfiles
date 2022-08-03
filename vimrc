@@ -27,7 +27,6 @@ let g:lightline = {
       \ 'subseparator': { 'left': "\uE0B1", 'right': "\uE0B3" },
       \ }
 
-Plug 'https://github.com/j-tom/vim-old-hope'
 Plug 'itchyny/lightline.vim'
 
 Plug 'scrooloose/nerdtree'
@@ -48,7 +47,6 @@ set nocompatible
 
 " Turn on syntax highlighting.
 syntax on
-color old-hope
 
 " Turn off modelines
 set modelines=0

@@ -11,4 +11,7 @@
   count-all-conflicts = !grep -c '^=======$' $(git conflicts)
 
 [includeIf "gitdir:~/gitWork/"]
-  path = .gitconfig-work
+  path = ~/.gitconfig-work
+
+[includeIf "gitdir:~/SAPDevelop/"]
+  path = ~/.gitconfig-work

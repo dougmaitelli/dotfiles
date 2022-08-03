@@ -2,6 +2,10 @@ set -x EDITOR vim
 set -x VISUAL vim
 set -x BROWSER /usr/bin/chromium
 
+if [ -e /opt/homebrew ]
+  fish_add_path /opt/homebrew/bin
+end
+
 if type -q exa
   alias ls "exa"
 end
@@ -9,17 +13,21 @@ end
 alias git-prune "git fetch -p ; git branch -r | awk '{print \$1}' | egrep -v -f /dev/fd/0 (git branch -vv | grep origin | psub) | awk '{print \$1}' | xargs git branch -D"
 
 if type -q jenv
-  set PATH $HOME/.jenv/bin $PATH
+  fish_add_path $HOME/.jenv/bin
   status --is-interactive; and source (jenv init -|psub)
 end
 
 if [ -e $HOME/.volta ]
   set -gx VOLTA_HOME $HOME/.volta
-  set -gx PATH $VOLTA_HOME/bin $PATH
+  fish_add_path $VOLTA_HOME/bin
+end
+
+if type -q npm
+  fish_add_path (npm bin)
 end
 
 if [ -e $HOME/.kubeconfigs ]
-  set -gx PATH $PATH $HOME/.krew/bin
+  fish_add_path $HOME/.krew/bin
   set -x KUBECONFIG $HOME/.kubeconfigs/config
 end
 
