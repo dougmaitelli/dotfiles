@@ -33,4 +33,6 @@ end
 
 [ -e $HOME/.env ]; and source $HOME/.env
 
+zoxide init fish | source
+
 starship init fish | source

@@ -15,3 +15,5 @@
 
 [includeIf "gitdir:~/SAPDevelop/"]
   path = ~/.gitconfig-work
+[init]
+	defaultBranch = master
