@@ -2,7 +2,6 @@
 
 - link:
     ~/.gitconfig: gitconfig
-    ~/.gtkrc-2.0: gtkrc-2.0
     ~/.vimrc: vimrc
     ~/.Xresources: Xresources
 
@@ -27,31 +26,43 @@
         path: config/Code/
         create: true
     ~/.config/conky:
+        if: '[ `uname` = Linux ]'
         path: config/conky/
         create: true
+    ~/.gtkrc-2.0:
+        if: '[ `uname` = Linux ]'
+        path: gtkrc-2.0
     ~/.config/gtk-3.0:
+        if: '[ `uname` = Linux ]'
         path: config/gtk-3.0/
         create: true
     ~/.config/jgmenu:
+        if: '[ `uname` = Linux ]'
         path: config/jgmenu/
         create: true
     ~/.config/openbox:
+        if: '[ `uname` = Linux ]'
         path: config/openbox/
         create: true
     ~/.config/obmenu-generator:
+        if: '[ `uname` = Linux ]'
         path: config/obmenu-generator/
         create: true
     ~/.config/tint2:
+        if: '[ `uname` = Linux ]'
         path: config/tint2/
         create: true
     ~/.config/volumeicon:
+        if: '[ `uname` = Linux ]'
         path: config/volumeicon/
         create: true
 
     ~/.themes/MyDark:
+        if: '[ `uname` = Linux ]'
         path: themes/MyDark/
         create: true
     ~/.themes/MyNeon:
+        if: '[ `uname` = Linux ]'
         path: themes/MyNeon/
         create: true
 
