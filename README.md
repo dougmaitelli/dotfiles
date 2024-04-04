@@ -41,7 +41,7 @@
 - [adeos-cores oblogout](https://github.com/arcolinux/arcolinux-oblogout-themes/tree/master/usr/share/themes/adeos-cores/oblogout)
 
 ## Install
-`sh -c "$(curl -fsSL https://raw.githubusercontent.com/dougmaitelli/dotfiles/master/setup.sh)"`
+`curl -sS https://raw.githubusercontent.com/dougmaitelli/dotfiles/master/setup.sh | sh`
 
 ## Install VS Code Extensions
 On fish `sync_vscode_extensions`
