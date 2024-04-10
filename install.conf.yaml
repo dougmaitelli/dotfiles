@@ -8,53 +8,53 @@
     ~/.config/fish/config.fish:
         path: config/fish/config.fish
         create: true
-    ~/.config/fish/functions/fish_greeting.fish:
-        path: config/fish/functions/fish_greeting.fish
+    ~/.config/fish/conf.d:
+        path: config/fish/conf.d/
         create: true
-    ~/.config/fish/functions/fisher.fish:
-        path: config/fish/functions/fisher.fish
-        create: true
-    ~/.config/fish/functions/sync_vscode_extensions.fish:
-        path: config/fish/functions/sync_vscode_extensions.fish
+    ~/.config/fish/functions:
+        path: config/fish/functions/
         create: true
 
     ~/.vim/autoload/plug.vim:
         path: vim/autoload/plug.vim
         create: true
 
-    ~/.config/Code:
-        path: config/Code/
-        create: true
-    ~/.config/conky:
+    ~/.config/hypr:
         if: '[ `uname` = Linux ]'
-        path: config/conky/
+        path: config/hypr/
         create: true
+    ~/.config/swww:
+        if: '[ `uname` = Linux ]'
+        path: config/swww/
+        create: true
+    ~/.config/waybar:
+        if: '[ `uname` = Linux ]'
+        path: config/waybar/
+        create: true
+    ~/.config/kitty:
+        if: '[ `uname` = Linux ]'
+        path: config/kitty/
+        create: true
+    ~/.config/mako:
+        if: '[ `uname` = Linux ]'
+        path: config/mako/
+        create: true
+    
+    ~/.config/rofi:
+        if: '[ `uname` = Linux ]'
+        path: config/rofi/
+        create: true
+    ~/.local/share/rofi:
+        if: '[ `uname` = Linux ]'
+        path: local/share/rofi/
+        create: true
+    
     ~/.gtkrc-2.0:
         if: '[ `uname` = Linux ]'
         path: gtkrc-2.0
     ~/.config/gtk-3.0:
         if: '[ `uname` = Linux ]'
         path: config/gtk-3.0/
-        create: true
-    ~/.config/jgmenu:
-        if: '[ `uname` = Linux ]'
-        path: config/jgmenu/
-        create: true
-    ~/.config/openbox:
-        if: '[ `uname` = Linux ]'
-        path: config/openbox/
-        create: true
-    ~/.config/obmenu-generator:
-        if: '[ `uname` = Linux ]'
-        path: config/obmenu-generator/
-        create: true
-    ~/.config/tint2:
-        if: '[ `uname` = Linux ]'
-        path: config/tint2/
-        create: true
-    ~/.config/volumeicon:
-        if: '[ `uname` = Linux ]'
-        path: config/volumeicon/
         create: true
 
     ~/.themes/MyDark:
