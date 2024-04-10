@@ -1,5 +1,6 @@
 * {
-    bg-col:  #1e1e2e;
+    bg-col: #1e1e2e;
+    bg-col-alpha: #1e1e2e99;
     bg-col-light: #1e1e2e;
     border-col: #1e1e2e;
     selected-col: #1e1e2e;
@@ -9,11 +10,10 @@
     grey: #6c7086;
 
     width: 600;
-    font: "JetBrainsMono Nerd Font 14";
 }
 
 element-text, element-icon , mode-switcher {
-    background-color: inherit;
+    background-color: transparent;
     text-color:       inherit;
 }
 
@@ -21,16 +21,16 @@ window {
     height: 360px;
     border: 3px;
     border-color: @border-col;
-    background-color: @bg-col;
+    background-color: @bg-col-alpha;
 }
 
 mainbox {
-    background-color: @bg-col;
+    background-color: transparent;
 }
 
 inputbar {
     children: [prompt,entry];
-    background-color: @bg-col;
+    background-color: transparent;
     border-radius: 5px;
     padding: 2px;
 }
@@ -52,7 +52,7 @@ entry {
     padding: 6px;
     margin: 20px 0px 0px 10px;
     text-color: @fg-col;
-    background-color: @bg-col;
+    background-color: transparent;
 }
 
 listview {
@@ -61,13 +61,13 @@ listview {
     margin: 10px 0px 0px 20px;
     columns: 2;
     lines: 5;
-    background-color: @bg-col;
+    background-color: transparent;
 }
 
 element {
     padding: 5px;
-    background-color: @bg-col;
-    text-color: @fg-col  ;
+    background-color: transparent;
+    text-color: @fg-col;
 }
 
 element-icon {
@@ -75,13 +75,13 @@ element-icon {
 }
 
 element selected {
-    background-color:  @selected-col ;
-    text-color: @fg-col2  ;
+    background-color:  @selected-col;
+    text-color: @fg-col2;
 }
 
 mode-switcher {
     spacing: 0;
-  }
+}
 
 button {
     padding: 10px;
@@ -92,7 +92,7 @@ button {
 }
 
 button selected {
-  background-color: @bg-col;
+  background-color: transparent;
   text-color: @blue;
 }
 

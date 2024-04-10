@@ -1,8 +1,5 @@
 { config, pkgs, inputs, ... }:
 
-#let
-#  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
-#in {
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -52,8 +49,8 @@
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "us";
-    xkbVariant = "";
+    xkb.layout = "us";
+    xkb.variant = "";
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -110,8 +107,8 @@
     python3
     jq
 
-    #unstable.hyprlock
-    #unstable.hypridle
+    hyprlock
+    hypridle
     hyprland
     waybar
     swww
@@ -132,7 +129,6 @@
     google-chrome
     vscode
   ];
-
 
   programs.hyprland = {
     enable = true;

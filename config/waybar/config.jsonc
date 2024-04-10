@@ -36,12 +36,8 @@
   ],
   "custom/power": {
     "format": " ",
-    "rotate": 0,
-    "exec": "echo ; echo  logout",
-    "on-click": "~/.config/hyprdots/scripts/logoutlaunch.sh 2",
-    "on-click-right": "~/.config/hyprdots/scripts/logoutlaunch.sh 1",
-    "interval": 86400,
-    "tooltip": true
+    "on-click": "~/.config/waybar/scripts/power-menu.sh",
+    "tooltip": false
   },
   "wlr/taskbar": {
     "format": "{icon}",
