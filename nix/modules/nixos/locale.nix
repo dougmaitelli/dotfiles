@@ -24,5 +24,4 @@
     xkb.layout = "us";
     xkb.variant = "";
   };
-
 }

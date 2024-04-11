@@ -7,6 +7,7 @@
       inputs.home-manager.nixosModules.default
       ../../modules/nixos/locale.nix
       ../../modules/nixos/desktop.nix
+      ../../modules/nixos/audio.nix
     ];
 
   # Bootloader.
@@ -44,16 +45,6 @@
     users = {
       "dougm" = import ./home.nix;
     };
-  };
-
-  sound.enable = true;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
   };
 
   # Allow unfree packages
