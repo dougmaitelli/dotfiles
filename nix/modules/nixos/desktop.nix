@@ -14,6 +14,8 @@
     libnotify
     mako
 
+    dolphin
+
     papirus-icon-theme
   ];
 
