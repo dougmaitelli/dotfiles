@@ -124,8 +124,8 @@
     "format-muted": "婢",
     "on-click": "pavucontrol -t 3",
     "on-click-middle": "~/.config/hyprdots/scripts/volumecontrol.sh -o m",
-    "on-scroll-up": "~/.config/hyprdots/scripts/volumecontrol.sh -o i",
-    "on-scroll-down": "~/.config/hyprdots/scripts/volumecontrol.sh -o d",
+    "on-scroll-up": "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 1%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-",
     "tooltip-format": "{icon} {desc} // {volume}%",
     "scroll-step": 5,
     "format-icons": {
