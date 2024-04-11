@@ -4,6 +4,7 @@
     ~/.gitconfig: gitconfig
     ~/.vimrc: vimrc
     ~/.Xresources: Xresources
+    ~/.config/background: config/background
 
     ~/.config/fish/config.fish:
         path: config/fish/config.fish
@@ -22,10 +23,6 @@
     ~/.config/hypr:
         if: '[ `uname` = Linux ]'
         path: config/hypr/
-        create: true
-    ~/.config/swww:
-        if: '[ `uname` = Linux ]'
-        path: config/swww/
         create: true
     ~/.config/waybar:
         if: '[ `uname` = Linux ]'

@@ -2,7 +2,7 @@
 
 #Wallpaper
 swww init &
-swww img ~/.config/swww/bg.jpg &
+swww img ~/.config/background &
 
 #Network Manager
 nm-applet --indicator &

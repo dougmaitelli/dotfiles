@@ -8,9 +8,10 @@
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
   boot.initrd.kernelModules = [ "nvidia" ];
 
   hardware = {
@@ -121,13 +122,11 @@
 
     papirus-icon-theme
 
-    kitty
-    fish
-    starship
-    zoxide
-
-    google-chrome
     vscode
+  ];
+
+  environment.shells = with pkgs; [
+    fish
   ];
 
   programs.hyprland = {
@@ -156,6 +155,8 @@
       wayland = true;
     };
   };
+
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
