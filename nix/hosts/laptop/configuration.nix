@@ -5,6 +5,8 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
+      ../../modules/nixos/locale.nix
+      ../../modules/nixos/desktop.nix
     ];
 
   # Bootloader.
@@ -30,36 +32,11 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
-  time.timeZone = "America/Los_Angeles";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
-  };
-
-  # Configure keymap in X11
-  services.xserver = {
-    xkb.layout = "us";
-    xkb.variant = "";
-  };
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dougm = {
     isNormalUser = true;
     description = "Douglas";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
   };
 
   home-manager = {
@@ -82,19 +59,6 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  fonts = {
-    packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "FiraCode" ]; })
-    ];
-    fontconfig = {
-      defaultFonts = {
-        serif = [ "FiraCode Nerd Font" ];
-        sansSerif = [ "FiraCode Nerd Font" ];
-        monospace = [ "FiraCodeMono Nerd Font" ];
-      };
-    };
-  };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -103,36 +67,14 @@
     killall
     vim
     git
-    fnm
-    eza
     python3
     jq
-
-    hyprlock
-    hypridle
-    hyprland
-    waybar
-    swww
-    rofi-wayland
-    wl-clipboard
-    networkmanagerapplet
-    pavucontrol
-    libnotify
-    mako
-
-    papirus-icon-theme
-
-    vscode
+    fnm
   ];
 
   environment.shells = with pkgs; [
     fish
   ];
-
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
 
   programs.fish = {
     enable = true;
@@ -142,21 +84,7 @@
     enable = true;
   };
 
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-
   # List services that you want to enable:
-
-  services.xserver = {
-    enable = true;
-    videoDrivers = [ "nvidia" ];
-    displayManager.gdm = {
-      enable = true;
-      wayland = true;
-    };
-  };
-
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
