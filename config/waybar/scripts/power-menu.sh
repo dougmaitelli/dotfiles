@@ -6,7 +6,7 @@ selected=$(printf '%s\n' $entries | rofi -dmenu -p " Power Menu" | awk '{prin
 
 case $selected in
   logout)
-    hyprlock;;
+    hyprctl dispatch exit;;
   suspend)
     exec systemctl suspend;;
   reboot)

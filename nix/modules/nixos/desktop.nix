@@ -3,16 +3,18 @@
 {
   environment.systemPackages = with pkgs; [
     hyprland
-    hyprlock
     hypridle
-    waybar
+    hyprlock
     swww
+    waybar
     rofi-wayland
     wl-clipboard
-    networkmanagerapplet
-    pavucontrol
     libnotify
     mako
+    hyprpicker
+
+    networkmanagerapplet
+    pavucontrol
 
     dolphin
 

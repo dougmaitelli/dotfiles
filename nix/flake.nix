@@ -18,5 +18,13 @@
         inputs.home-manager.nixosModules.default
       ];
     };
+
+    nixosConfigurations.wsl = nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs;};
+      modules = [
+        ./hosts/wsl/configuration.nix
+        inputs.home-manager.nixosModules.default
+      ];
+    };
   };
 }

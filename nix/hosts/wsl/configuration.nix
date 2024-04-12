@@ -6,36 +6,15 @@
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
       ../../modules/nixos/locale.nix
-      ../../modules/nixos/desktop.nix
-      ../../modules/nixos/audio.nix
       ../../modules/user/doug.nix
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Bootloader.
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
-  };
-  boot.initrd.kernelModules = [ "nvidia" ];
-
-  hardware = {
-    opengl = {
-      enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
-    };
-    nvidia.modesetting.enable = true;
-  };
-
-  networking.hostName = "nixos";
+  networking.hostName = "wsl";
 
   # Enable networking
   networking.networkmanager.enable = true;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
