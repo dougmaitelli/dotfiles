@@ -2,9 +2,7 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-       # include NixOS-WSL modules
-      <nixos-wsl/modules>
+    [
       inputs.home-manager.nixosModules.default
       ../../modules/nixos/locale.nix
       ../../modules/user/doug.nix
