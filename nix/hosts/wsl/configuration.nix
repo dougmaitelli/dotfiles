@@ -4,8 +4,7 @@
   imports =
     [
       inputs.home-manager.nixosModules.default
-      ../../modules/nixos/locale.nix
-      ../../modules/user/doug.nix
+      ../../modules/users/doug
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -14,6 +13,8 @@
 
   wsl.enable = true;
   wsl.defaultUser = "dougm";
+
+  programs.nix-ld.enable = true;
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -24,7 +25,7 @@
     curl
     wget
     killall
-    vim
+    neovim
     git
     python3
     jq

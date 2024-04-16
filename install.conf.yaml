@@ -3,7 +3,6 @@
 - link:
     ~/.gitconfig: gitconfig
     ~/.vimrc: vimrc
-    ~/.Xresources: Xresources
     ~/.config/background: config/background
 
     ~/.config/fish/config.fish:
@@ -14,10 +13,6 @@
         create: true
     ~/.config/fish/functions:
         path: config/fish/functions/
-        create: true
-
-    ~/.vim/autoload/plug.vim:
-        path: vim/autoload/plug.vim
         create: true
 
     ~/.config/hypr:
@@ -45,21 +40,3 @@
         if: '[ `uname` = Linux ]'
         path: local/share/rofi/
         create: true
-    
-    ~/.gtkrc-2.0:
-        if: '[ `uname` = Linux ]'
-        path: gtkrc-2.0
-    ~/.config/gtk-3.0:
-        if: '[ `uname` = Linux ]'
-        path: config/gtk-3.0/
-        create: true
-
-    ~/.themes/MyDark:
-        if: '[ `uname` = Linux ]'
-        path: themes/MyDark/
-        create: true
-    ~/.themes/MyNeon:
-        if: '[ `uname` = Linux ]'
-        path: themes/MyNeon/
-        create: true
-

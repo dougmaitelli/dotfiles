@@ -3,7 +3,9 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
     nixos-wsl.url = "github:nix-community/nixos-wsl";
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -26,6 +28,10 @@
       modules = [
         ./hosts/wsl/configuration.nix
         inputs.nixos-wsl.nixosModules.wsl
+        inputs.vscode-server.nixosModules.default
+        ({ config, pkgs, ... }: {
+          services.vscode-server.enable = true;
+        })
         inputs.home-manager.nixosModules.default
       ];
     };
