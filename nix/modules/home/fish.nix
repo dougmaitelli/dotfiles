@@ -1,15 +1,15 @@
 { config, pkgs, ... }:
 
 {
-    programs.fish = {
+  programs.fish = {
     enable = true;
     interactiveShellInit = ''
       if [ -e /opt/homebrew ]
         fish_add_path /opt/homebrew/bin
       end
 
-      if type -q colorls
-        alias ls "colorls"
+      if type -q eza
+        alias ls "eza --color=always --icons=always --git"
       end
 
       alias git-prune "git fetch -p ; git branch -r | awk '{print \$1}' | egrep -v -f /dev/fd/0 (git branch -vv | grep origin | psub) | awk '{print \$1}' | xargs git branch -D"

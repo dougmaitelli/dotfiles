@@ -28,20 +28,56 @@
     kitty
     starship
     neofetch
-    colorls
-    zoxide
-    fnm
-
+    eza
     lolcat
     fortune
+    pipes
+    fzf
+    zoxide
+    bat
+    tlrc
+    delta
+    fnm
 
     tree-sitter
-
     google-chrome
     vscode
   ];
 
   programs.starship.enable = true;
+
+  programs.git = {
+    enable = true;
+    userName = "Douglas Maitelli";
+    userEmail = "dougmaitelli@gmail.com";
+    extraConfig = {
+      init = {
+        defaultBranch = "master";
+      };
+
+      core = {
+        pager = "delta";
+      };
+
+      interactive = {
+        diffFilter = "delta --color-only";
+      };
+
+      delta = {
+        navigate = true;
+        line-numbers = true;
+        side-by-side = false;
+      };
+
+      merge = {
+        conflictstyle = "diff3";
+      };
+
+      diff = {
+        colorMoved = "default";
+      };
+    };
+  };
 
   programs.neovim = {
     enable = true;
@@ -53,18 +89,14 @@
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-    # ".screenrc".source = ../../../../config/nvim/init.lua;
-
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
   };
 
+  xdg.configFile."bat/themes/CatppuccinMocha.tmTheme".source = ../../../../config/bat/themes/CatppuccinMocha.tmTheme;
   xdg.configFile."nvim/init.lua".source = ../../../../config/nvim/init.lua;
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    BAT_THEME = "CatppuccinMocha";
   };
 
   # Let Home Manager install and manage itself.

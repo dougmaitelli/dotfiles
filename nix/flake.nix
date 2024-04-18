@@ -17,7 +17,8 @@
     nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
-        ./hosts/laptop/configuration.nix
+        ./hosts/clients
+        ./hosts/clients/laptop/configuration.nix
         inputs.home-manager.nixosModules.default
       ];
     };
@@ -26,7 +27,8 @@
       system = "x86_64-linux";
       specialArgs = {inherit inputs;};
       modules = [
-        ./hosts/wsl/configuration.nix
+        ./hosts/clients
+        ./hosts/clients/wsl/configuration.nix
         inputs.nixos-wsl.nixosModules.wsl
         inputs.vscode-server.nixosModules.default
         ({ config, pkgs, ... }: {

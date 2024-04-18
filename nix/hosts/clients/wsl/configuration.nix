@@ -2,40 +2,22 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+    [
       inputs.home-manager.nixosModules.default
-      ../../modules/nixos/locale.nix
-      ../../modules/nixos/desktop.nix
-      ../../modules/nixos/audio.nix
-      ../../modules/users/doug
+      ../../../modules/users/doug
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Bootloader.
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
-  };
-  boot.initrd.kernelModules = [ "nvidia" ];
+  networking.hostName = "wsl";
 
-  hardware = {
-    opengl = {
-      enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
-    };
-    nvidia.modesetting.enable = true;
-  };
+  wsl.enable = true;
+  wsl.defaultUser = "dougm";
 
-  networking.hostName = "nixos";
+  programs.nix-ld.enable = true;
 
   # Enable networking
   networking.networkmanager.enable = true;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -43,7 +25,7 @@
     curl
     wget
     killall
-    vim
+    neovim
     git
     python3
     jq

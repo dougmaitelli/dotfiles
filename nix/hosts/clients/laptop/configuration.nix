@@ -2,19 +2,34 @@
 
 {
   imports =
-    [
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
-      ../../modules/users/doug
+      ../../../modules/nixos/locale.nix
+      ../../../modules/nixos/desktop.nix
+      ../../../modules/nixos/audio.nix
+      ../../../modules/users/doug
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  networking.hostName = "wsl";
+  # Bootloader.
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
+  boot.initrd.kernelModules = [ "nvidia" ];
 
-  wsl.enable = true;
-  wsl.defaultUser = "dougm";
+  hardware = {
+    opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+    };
+    nvidia.modesetting.enable = true;
+  };
 
-  programs.nix-ld.enable = true;
+  networking.hostName = "laptop";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -25,7 +40,7 @@
     curl
     wget
     killall
-    neovim
+    vim
     git
     python3
     jq
