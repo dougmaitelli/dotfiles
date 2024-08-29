@@ -3,6 +3,8 @@
 [user]
   email = dougmaitelli@gmail.com
   name = Douglas Maitelli
+[pull]
+  rebase = true
 [push]
   default = simple
 [alias]
@@ -15,5 +17,6 @@
 
 [includeIf "gitdir:~/SAPDevelop/"]
   path = ~/.gitconfig-work
+
 [init]
 	defaultBranch = master
