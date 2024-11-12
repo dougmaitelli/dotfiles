@@ -22,13 +22,16 @@ if [ -e $HOME/.volta ]
   fish_add_path $VOLTA_HOME/bin
 end
 
+if type -q fnm
+ fnm env --use-on-cd --shell fish | source 
+end
+
 if type -q npm
   fish_add_path (npm bin)
 end
 
-if [ -e $HOME/.kubeconfigs ]
+if [ -e $HOME/.krew ]
   fish_add_path $HOME/.krew/bin
-  set -x KUBECONFIG $HOME/.kubeconfigs/config
 end
 
 [ -e $HOME/.env ]; and source $HOME/.env
