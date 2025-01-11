@@ -26,6 +26,7 @@
   # environment.
   home.packages = with pkgs; [
     kitty
+    ghostty
     starship
     neofetch
     eza
