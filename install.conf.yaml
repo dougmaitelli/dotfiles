@@ -27,6 +27,9 @@
         if: '[ `uname` = Linux ]'
         path: config/kitty/
         create: true
+    ~/.config/ghostty:
+        path: config/ghostty/
+        create: true
     ~/.config/mako:
         if: '[ `uname` = Linux ]'
         path: config/mako/
