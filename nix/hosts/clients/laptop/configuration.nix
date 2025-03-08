@@ -21,7 +21,7 @@
   boot.initrd.kernelModules = [ "nvidia" ];
 
   hardware = {
-    opengl = {
+    graphics = {
       enable = true;
       driSupport32Bit = true;
     };
@@ -43,6 +43,7 @@
     git
     python3
     jq
+    unzip
   ];
 
   environment.shells = with pkgs; [

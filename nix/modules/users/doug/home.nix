@@ -42,6 +42,7 @@
 
     tree-sitter
     google-chrome
+    firefox
     vscode
   ];
 
