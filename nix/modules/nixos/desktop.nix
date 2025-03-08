@@ -16,7 +16,7 @@
     networkmanagerapplet
     pavucontrol
 
-    dolphin
+    kdePackages.dolphin
 
     papirus-icon-theme
   ];
