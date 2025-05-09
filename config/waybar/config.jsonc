@@ -121,7 +121,7 @@
   "pulseaudio": {
     "format": "{icon} {volume}",
     "rotate": 0,
-    "format-muted": "婢",
+    "format-muted": "",
     "on-click": "pavucontrol -t 3",
     "on-click-middle": "~/.config/hyprdots/scripts/volumecontrol.sh -o m",
     "on-scroll-up": "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 1%+",

@@ -5,4 +5,4 @@ theme = catppuccin-mocha.conf
 background-opacity = 0.75
 background-blur = true
 
-custom-shader = ./shaders/bloom.glsl
+#custom-shader = ./shaders/bettercrt.glsl

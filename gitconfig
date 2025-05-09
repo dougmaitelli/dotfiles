@@ -1,12 +1,21 @@
-[color]
-  ui = auto
+[core]
+  pager = delta
 [user]
   email = dougmaitelli@gmail.com
   name = Douglas Maitelli
+[color]
+  ui = auto
+[delta]
+  navigate = true
+[interactive]
+  diffFilter = delta --color-only
 [pull]
   rebase = true
 [push]
   default = simple
+[merge]
+  confictstyle = zdiff3
+
 [alias]
   conflicts = !git ls-files --unmerged | cut -f2 | sort -u
   count-conflicts = !grep -c '^=======$'
@@ -18,5 +27,3 @@
 [includeIf "gitdir:~/SAPDevelop/"]
   path = ~/.gitconfig-work
 
-[init]
-	defaultBranch = master
