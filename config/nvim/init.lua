@@ -60,6 +60,10 @@ vim.opt.listchars = {
 }
 vim.opt.list = true
 
+-- Reserve a space in the gutter
+-- This will avoid an annoying layout shift in the screen
+vim.opt.signcolumn = 'yes'
+
 -- -----------------------------------------------------------------------------------------------
 -- Keymap settings
 -- -----------------------------------------------------------------------------------------------
@@ -134,36 +138,7 @@ local plugins = {
 		opts = {},
 		-- Optional dependencies
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-	},
-
-	-- LSP-Zero
-	{
-		"VonHeikemen/lsp-zero.nvim",
-		branch = "v2.x",
-		dependencies = {
-			-- LSP Support
-			{ "neovim/nvim-lspconfig" },
-			{
-				"williamboman/mason.nvim",
-				build = function()
-					pcall(vim.cmd, "MasonUpdate")
-				end,
-			},
-			{ "williamboman/mason-lspconfig.nvim" },
-
-			-- Autocompletion
-			{ "hrsh7th/nvim-cmp" },
-			{ "hrsh7th/cmp-nvim-lsp" },
-			{ "L3MON4D3/LuaSnip" },
-			{ "hrsh7th/cmp-path" },
-			{ "hrsh7th/cmp-buffer" },
-			{ "hrsh7th/cmp-nvim-lsp-signature-help" },
-		},
-	},
-
-	-- Null LS
-	{ "jose-elias-alvarez/null-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
-	{ "jay-babu/mason-null-ls.nvim" },
+	},	
 
 	-- TreeSitter
 	{
@@ -176,6 +151,13 @@ local plugins = {
 	{ "nvim-treesitter/nvim-treesitter-context" },
 	{ "HiPhish/nvim-ts-rainbow2" },
 	{ "nvim-treesitter/playground" },
+
+	-- LSP-Zero
+	{'mason-org/mason.nvim', tag = 'v1.11.0', pin = true},
+  	{'mason-org/mason-lspconfig.nvim', tag = 'v1.32.0', pin = true},
+	{'neovim/nvim-lspconfig', tag = 'v1.8.0', pin = true},
+	{'hrsh7th/cmp-nvim-lsp'},
+	{'hrsh7th/nvim-cmp'},
 
 	-- Telescope
 	{
@@ -276,14 +258,11 @@ require("nvim-treesitter.configs").setup({
 		strategy = require("ts-rainbow").strategy.global,
 	},
 	ensure_installed = {
-		"lua",
 		"vim",
 		"vimdoc",
 		"query",
 		"javascript",
 		"typescript",
-		"go",
-		"sql",
 		"bash",
 		"css",
 		"diff",
@@ -292,7 +271,6 @@ require("nvim-treesitter.configs").setup({
 		"html",
 		"jq",
 		"json",
-		"latex",
 		"markdown",
 		"yaml",
         "nix",
@@ -310,81 +288,82 @@ vim.opt.foldlevel = 99
 -- -----------------------------------------------------------------------------------------------
 -- LSP stuff
 -- -----------------------------------------------------------------------------------------------
-local lsp = require("lsp-zero").preset({ name = "recommended" })
-lsp.on_attach(function(client, bufnr)
-	local opts = { buffer = bufnr }
-	lsp.default_keymaps(opts)
-	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-	vim.keymap.set("n", "gd", tele_builtin.lsp_definitions, opts)
-	vim.keymap.set("n", "gr", tele_builtin.lsp_references, opts)
-end)
+-- Add cmp_nvim_lsp capabilities settings to lspconfig
+-- This should be executed before you configure any language server
+local lspconfig_defaults = require('lspconfig').util.default_config
+lspconfig_defaults.capabilities = vim.tbl_deep_extend(
+	'force',
+	lspconfig_defaults.capabilities,
+	require('cmp_nvim_lsp').default_capabilities()
+)
 
-lsp.ensure_installed({
-	-- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
-	"tsserver",
-	"eslint",
-	"bashls",
-	"cssls",
-	"dockerls",
-	"docker_compose_language_service",
-	"gopls",
-	"html",
-	"jsonls",
-	"lua_ls",
-	"sqlls",
-	"yamlls",
-    "nix_ls",
-    "vuels",
-    "markdown_oxide"
+-- This is where you enable features that only work
+-- if there is a language server active in the file
+vim.api.nvim_create_autocmd('LspAttach', {
+	desc = 'LSP actions',
+	callback = function(event)
+		local opts = {buffer = event.buf}
+
+		vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+		vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+		vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+		vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+		vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+		vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+		vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+		vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+		vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+		vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+	end,
 })
 
-lsp.format_mapping("<leader>fo", {
-	format_opts = {
-		async = true,
-		timeout_ms = 10000,
+require('mason').setup({})
+require('mason-lspconfig').setup({
+	ensure_installed = {
+		-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
+		"eslint",
+		"ts_ls",
+		"html",
+		"cssls",
+		"vuels",
+		"jsonls",
+		"yamlls",
+		"bashls",
+		"nixd",
+		"markdown_oxide"
 	},
-	servers = {
-		["null-ls"] = { "javascript", "typescript", "lua", "python", "go", "json", "vue" },
-	},
-})
-
-lsp.setup()
-
-local null_ls = require("null-ls")
-null_ls.setup({
-	-- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
-	sources = {
-		null_ls.builtins.formatting.prettierd,
-		null_ls.builtins.formatting.stylua,
-		null_ls.builtins.formatting.jq,
-		null_ls.builtins.formatting.black,
-		null_ls.builtins.formatting.ruff,
-		null_ls.builtins.formatting.gofmt,
+	handlers = {
+		function(server_name)
+			require('lspconfig')[server_name].setup({})
+		end,
 	},
 })
-require("mason-null-ls").setup({
-	ensure_installed = nil,
-	automatic_installation = true,
-})
 
-local cmp = require("cmp")
+local cmp = require('cmp')
+
 cmp.setup({
 	sources = {
-		{ name = "nvim_lsp_signature_help" },
-		{ name = "path", max_item_count = 4 },
-		{ name = "nvim_lsp", max_item_count = 4 },
-		{ name = "buffer", keyword_length = 3 },
-		{ name = "luasnip", keyword_length = 2 },
+		{name = 'nvim_lsp'},
 	},
-	preselect = "item",
-	completion = {
-		-- autocomplete = false,
-		completeopt = "menu,menuone,noinsert",
-	},
-	mapping = {
-		["<CR>"] = cmp.mapping.confirm({ select = false }),
-		-- ["<Tab>"] = cmp_action.tab_complete(),
-		-- ["<Tab>"] = cmp.mapping.complete(),
+	mapping = cmp.mapping.preset.insert({
+		-- Navigate between completion items
+		['<C-p>'] = cmp.mapping.select_prev_item({behavior = 'select'}),
+		['<C-n>'] = cmp.mapping.select_next_item({behavior = 'select'}),
+
+		-- `Enter` key to confirm completion
+		['<CR>'] = cmp.mapping.confirm({select = false}),
+
+		-- Ctrl+Space to trigger completion menu
+		['<C-Space>'] = cmp.mapping.complete(),
+
+		-- Scroll up and down in the completion documentation
+		['<C-u>'] = cmp.mapping.scroll_docs(-4),
+		['<C-d>'] = cmp.mapping.scroll_docs(4),
+	}),
+	snippet = {
+		expand = function(args)
+		vim.snippet.expand(args.body)
+		end,
 	},
 })
 
@@ -393,7 +372,7 @@ cmp.setup({
 -- -----------------------------------------------------------------------------------------------
 -- Spell check certain file types
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "latex", "tex", "md", "markdown" },
+	pattern = { "md", "markdown" },
 	callback = function()
 		vim.opt.spell = true
 		vim.opt.wrap = true

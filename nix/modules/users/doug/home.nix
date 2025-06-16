@@ -25,11 +25,10 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    kitty
     ghostty
     starship
     neofetch
-    eza
+    lsd
     lolcat
     fortune
     pipes
@@ -39,11 +38,6 @@
     tlrc
     delta
     fnm
-
-    tree-sitter
-    google-chrome
-    firefox
-    vscode
   ];
 
   programs.starship.enable = true;
@@ -68,24 +62,13 @@
       delta = {
         navigate = true;
         line-numbers = true;
-        side-by-side = false;
+        side-by-side = true;
       };
 
       merge = {
-        conflictstyle = "diff3";
-      };
-
-      diff = {
-        colorMoved = "default";
+        conflictstyle = "zdiff3";
       };
     };
-  };
-
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
   };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

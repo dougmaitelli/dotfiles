@@ -35,25 +35,11 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    bat
-    curl
-    wget
-    killall
-    vim
-    git
-    delta
-    python3
-    jq
-    unzip
-    unrar
     twingate
+    google-chrome
+    firefox
+    vscode
   ];
-
-  environment.shells = with pkgs; [
-    fish
-  ];
-
-  programs.fish.enable = true;
 
   # List services that you want to enable:
 
