@@ -5,7 +5,7 @@
   users.users.dougm = {
     isNormalUser = true;
     description = "Douglas";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     shell = pkgs.fish;
   };
 

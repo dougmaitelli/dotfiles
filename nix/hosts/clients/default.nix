@@ -6,15 +6,23 @@
 
   environment.systemPackages = with pkgs; [
     nh # Nix Helper
+
     curl
     wget
     killall
+
+    inetutils
+
     git
+
     python3
     jq
     gcc
+
     unzip
     unrar
+    
+    docker
     
     neovim
     tree-sitter # Vim Parsers

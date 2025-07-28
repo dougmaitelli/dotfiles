@@ -8,6 +8,7 @@
       ../../../modules/nixos/locale.nix
       ../../../modules/nixos/desktop.nix
       ../../../modules/nixos/audio.nix
+      ../../../modules/nixos/docker.nix
       ../../../modules/users/doug
     ];
 

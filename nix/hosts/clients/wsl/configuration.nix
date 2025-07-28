@@ -5,7 +5,6 @@
     [
       inputs.home-manager.nixosModules.default
       ../../../modules/users/doug
-      ../../../modules/nixos/docker.nix
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -15,6 +14,8 @@
   wsl.enable = true;
   wsl.defaultUser = "dougm";
 
+  wsl.docker.enable = true;
+
   programs.nix-ld.enable = true;
 
   # Enable networking
@@ -23,8 +24,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    inetutils
-    docker
   ];
 
   # List services that you want to enable:
