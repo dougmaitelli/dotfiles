@@ -5,6 +5,7 @@
     [
       inputs.home-manager.nixosModules.default
       ../../../modules/users/doug
+      ../../../modules/nixos/docker.nix
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -22,6 +23,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    inetutils
+    docker
   ];
 
   # List services that you want to enable:
