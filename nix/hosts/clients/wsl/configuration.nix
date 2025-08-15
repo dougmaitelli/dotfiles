@@ -14,7 +14,7 @@
   wsl.enable = true;
   wsl.defaultUser = "dougm";
 
-  wsl.docker.enable = true;
+  wsl.docker-desktop.enable = true;
 
   programs.nix-ld.enable = true;
 
@@ -27,6 +27,7 @@
   ];
 
   # List services that you want to enable:
+  services.vscode-server.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

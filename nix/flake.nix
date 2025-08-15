@@ -31,9 +31,6 @@
         ./hosts/clients/wsl/configuration.nix
         inputs.nixos-wsl.nixosModules.wsl
         inputs.vscode-server.nixosModules.default
-        ({ config, pkgs, ... }: {
-          services.vscode-server.enable = true;
-        })
         inputs.home-manager.nixosModules.default
       ];
     };
