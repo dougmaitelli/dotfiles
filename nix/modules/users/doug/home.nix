@@ -55,14 +55,22 @@
         pager = "delta";
       };
 
-      interactive = {
-        diffFilter = "delta --color-only";
-      };
-
       delta = {
         navigate = true;
         line-numbers = true;
         side-by-side = true;
+      };
+
+      interactive = {
+        diffFilter = "delta --color-only";
+      };
+
+      pull = {
+        rebase = "true";
+      };
+
+      push = {
+        default = "simple";
       };
 
       merge = {

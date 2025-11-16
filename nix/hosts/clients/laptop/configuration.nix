@@ -28,6 +28,8 @@
     nvidia.modesetting.enable = true;
   };
 
+  boot.supportedFilesystems = [ "ntfs" ];
+
   networking.hostName = "laptop";
 
   # Enable networking
@@ -36,6 +38,17 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    bat
+    curl
+    wget
+    killall
+    vim
+    git
+    delta
+    python3
+    jq
+    unzip
+    unrar
     twingate
     google-chrome
     firefox
