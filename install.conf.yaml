@@ -2,17 +2,13 @@
 
 - link:
     ~/.gitconfig: gitconfig
-    ~/.vimrc: vimrc
     ~/.config/background: config/background
 
     ~/.config/fish/config.fish:
         path: config/fish/config.fish
         create: true
-    ~/.config/fish/conf.d:
-        path: config/fish/conf.d/
-        create: true
-    ~/.config/fish/functions:
-        path: config/fish/functions/
+    ~/.config/fish/functions/fish_greeting.fish:
+        path: config/fish/functions/fish_greeting.fish
         create: true
 
     ~/.config/starship.toml: config/starship.toml
