@@ -18,12 +18,13 @@
     python3
     jq
     gcc
+    cargo
 
     unzip
     unrar
-    
+
     docker
-    
+
     neovim
     tree-sitter # Vim Parsers
   ];

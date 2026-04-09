@@ -38,18 +38,16 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    bat
     curl
     wget
     killall
-    vim
     git
-    delta
     python3
+    vim
     jq
+
     unzip
     unrar
-    twingate
     google-chrome
     firefox
     vscode

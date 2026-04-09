@@ -149,8 +149,7 @@ local plugins = {
 		build = ":TSUpdate",
 	},
 	{ "nvim-treesitter/nvim-treesitter-context" },
-	{ "HiPhish/nvim-ts-rainbow2" },
-	{ "nvim-treesitter/playground" },
+	{ "HiPhish/rainbow-delimiters.nvim" },
 
 	-- LSP-Zero
 	{'mason-org/mason.nvim', tag = 'v1.11.0', pin = true},
@@ -173,7 +172,7 @@ local plugins = {
 	-- gitsigns
 	{ "lewis6991/gitsigns.nvim" },
 
-	{ "ggandor/leap.nvim" },
+	{ "https://codeberg.org/andyg/leap.nvim" },
 }
 
 -- -----------------------------------------------------------------------------------------------
@@ -245,17 +244,11 @@ require("leap").add_default_mappings()
 -- -----------------------------------------------------------------------------------------------
 -- Treesitter
 -- -----------------------------------------------------------------------------------------------
-require("nvim-treesitter.configs").setup({
+require("nvim-treesitter").setup({
 	-- A list of parser names, or "all"
 	-- https://github.com/nvim-treesitter/nvim-treesitter/tree/master#supported-languages
 	playground = {
 		enable = false,
-	},
-	rainbow = {
-		enable = true,
-		query = "rainbow-parens",
-		-- Highlight the entire buffer all at once
-		strategy = require("ts-rainbow").strategy.global,
 	},
 	ensure_installed = {
 		"vim",
@@ -273,7 +266,7 @@ require("nvim-treesitter.configs").setup({
 		"json",
 		"markdown",
 		"yaml",
-        "nix",
+    "nix",
 	},
 	sync_install = false,
 	auto_install = true,
@@ -329,7 +322,7 @@ require('mason-lspconfig').setup({
 		"jsonls",
 		"yamlls",
 		"bashls",
-		"nixd",
+		"nil_ls",
 		"markdown_oxide"
 	},
 	handlers = {

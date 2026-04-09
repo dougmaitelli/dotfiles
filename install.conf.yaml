@@ -13,6 +13,10 @@
 
     ~/.config/starship.toml: config/starship.toml
 
+    ~/.config/nvim/init.lua:
+        path: config/nvim/init.lua
+        create: true
+
     ~/.config/hypr:
         if: '[ `uname` = Linux ]'
         path: config/hypr/
