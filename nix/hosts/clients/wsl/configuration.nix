@@ -4,6 +4,7 @@
   imports =
     [
       inputs.home-manager.nixosModules.default
+      ../../default.nix
       ../../../modules/users/doug
     ];
 
@@ -24,7 +25,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    goose-cli
   ];
 
   # List services that you want to enable:
@@ -37,5 +37,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
 }

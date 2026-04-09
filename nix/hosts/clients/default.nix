@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 {
+  nix.settings.auto-optimise-store = true; # Optimizes on every build
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -32,7 +34,7 @@
   programs.nh = {
     enable = true;
     clean.enable = true;
-    clean.extraArgs = "--keep-since 3d --keep 3";
+    clean.extraArgs = "--keep-since 7d --keep 3";
     flake = "/home/dougm/.dotfiles/nix/";
   };
 

@@ -5,6 +5,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
+      ../../default.nix
       ../../../modules/nixos/locale.nix
       ../../../modules/nixos/desktop.nix
       ../../../modules/nixos/audio.nix
@@ -38,14 +39,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    curl
-    wget
-    killall
-    git
-    python3
-    vim
-    jq
-
     unzip
     unrar
     google-chrome
@@ -62,5 +55,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
 }

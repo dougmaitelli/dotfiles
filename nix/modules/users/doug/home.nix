@@ -49,9 +49,11 @@
 
   programs.git = {
     enable = true;
-    userName = "Douglas Maitelli";
-    userEmail = "dougmaitelli@gmail.com";
-    extraConfig = {
+
+    settings = {
+      user.name = "Douglas Maitelli";
+      user.email = "dougmaitelli@gmail.com";
+
       init = {
         defaultBranch = "master";
       };
