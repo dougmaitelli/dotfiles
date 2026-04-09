@@ -5,7 +5,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
-      ../../default.nix
+      ../default.nix
       ../../../modules/nixos/locale.nix
       ../../../modules/nixos/desktop.nix
       ../../../modules/nixos/audio.nix

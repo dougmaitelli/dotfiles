@@ -4,7 +4,7 @@
   imports =
     [
       inputs.home-manager.nixosModules.default
-      ../../default.nix
+      ../default.nix
       ../../../modules/users/doug
     ];
 
