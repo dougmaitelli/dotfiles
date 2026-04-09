@@ -2,9 +2,9 @@
   description = "Nixos config flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
 
-    nixos-wsl.url = "github:nix-community/nixos-wsl/release-25.05";
+    nixos-wsl.url = "github:nix-community/nixos-wsl/release-25.11";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
 
     home-manager = {
