@@ -1,0 +1,28 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "lemonade": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Lemonade",
+      "options": {
+        "baseURL": "http://192.168.0.13:13305/api/v1",
+	"apiKey": "lemonade"
+      },
+      "models": {
+        "user.Qwen3.6-35B-A3B-GGUF-UD-Q4_K_M": {
+	  "name": "Qwen3.6-35B-A3B-GGUF"
+	}
+      }
+    }
+  },
+  "permission": {
+    "bash": {
+      "*": "ask",
+      "git *": "allow",
+      "npm *": "allow",
+      "rm *": "ask",
+      "grep *": "allow"
+    },
+    "edit": "ask"
+  }
+}

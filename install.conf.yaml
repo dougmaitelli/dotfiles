@@ -16,6 +16,9 @@
     ~/.config/nvim/init.lua:
         path: config/nvim/init.lua
         create: true
+    ~/.config/opencode/opencode.json:
+        path: config/opencode/opencode.json
+        create: true
 
     ~/.config/hypr:
         if: '[ `uname` = Linux ]'
