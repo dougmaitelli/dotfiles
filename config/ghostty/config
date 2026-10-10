@@ -1,7 +1,7 @@
 window-padding-x = 10
 window-padding-y = 10
 
-theme = catppuccin-mocha.conf
+theme = Catppuccin Mocha
 background-opacity = 0.75
 background-blur = true
 
