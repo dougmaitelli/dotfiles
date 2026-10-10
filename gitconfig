@@ -2,6 +2,7 @@
   defaultBranch = master
 [core]
   pager = delta
+	excludesfile = /root/.gitignore_global
 [user]
   email = dougmaitelli@gmail.com
   name = Douglas Maitelli
@@ -29,3 +30,9 @@
 [includeIf "gitdir:~/SAPDevelop/"]
   path = ~/.gitconfig-work
 
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential

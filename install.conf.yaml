@@ -2,7 +2,6 @@
 
 - link:
     ~/.gitconfig: gitconfig
-    ~/.config/background: config/background
 
     ~/.config/fish/config.fish:
         path: config/fish/config.fish
@@ -19,7 +18,13 @@
     ~/.config/opencode/opencode.json:
         path: config/opencode/opencode.json
         create: true
+    ~/.codex/instructions.md:
+        path: codex/instructions.md
+        create: true
 
+    ~/.config/background:
+        if: '[ `uname` = Linux ]'
+        path: config/background
     ~/.config/hypr:
         if: '[ `uname` = Linux ]'
         path: config/hypr/
