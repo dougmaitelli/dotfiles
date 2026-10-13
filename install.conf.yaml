@@ -18,8 +18,8 @@
     ~/.config/opencode/opencode.json:
         path: config/opencode/opencode.json
         create: true
-    ~/.codex/instructions.md:
-        path: codex/instructions.md
+    ~/.codex/AGENTS.md:
+        path: codex/AGENTS.md
         create: true
 
     ~/.config/background:
