@@ -21,6 +21,9 @@
     ~/.codex/AGENTS.md:
         path: codex/AGENTS.md
         create: true
+    ~/.agents/skills:
+        path: agents/skills
+        create: true
 
     ~/.config/background:
         if: '[ `uname` = Linux ]'
