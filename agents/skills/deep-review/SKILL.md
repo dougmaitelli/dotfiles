@@ -11,9 +11,11 @@ Examine the following areas:
    - Assess separation of responsibilities across UI, business logic, data layers, and APIs/services.
    - Identify tightly coupled modules, circular dependencies, and God files/classes.
    - Evaluate scalability and ease of adding new features.
+   - Assess UI component boundaries and reuse: identify oversized components mixing presentation, state, and data access, plus repeated UI patterns or interaction logic that should use existing components or shared hooks. Recommend cohesive components with clear inputs and responsibilities; ground extraction in duplicated behavior, inconsistent accessibility or styling, or maintenance costs, and avoid abstractions for superficially similar markup with different behavior.
 
 2. Code Quality & Standards
    - Check clean code principles, naming consistency, and duplication.
+   - Review repeated domain strings, magic values, and duplicated mappings for reuse of existing shared constants and types. Trace producers and consumers for finite sets such as events, statuses, protocols, and actions; flag broad `string` types, unchecked assertions, and schemas that should use an existing enum, literal union, or constrained schema. Recommend a shared source of truth and validation at external boundaries where needed. Keep free-form text and extensible external values flexible, and justify extraction by concrete drift or correctness risks rather than repetition alone.
    - Look for improper error handling, unmanaged edge cases, and missing validation.
    - Review asynchronous operations, race conditions, and memory leak risks.
 
