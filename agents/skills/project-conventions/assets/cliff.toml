@@ -1,0 +1,50 @@
+[changelog]
+header = ""
+body = """
+{% for group, commits in commits | group_by(attribute="group") %}
+### {{ group }}
+{% for commit in commits %}
+- {{ commit.message | split(pat="\n") | first | trim }} ([{{ commit.id | truncate(length=7, end="") }}](https://github.com/{{ remote.github.owner }}/{{ remote.github.repo }}/commit/{{ commit.id }}))
+{%- endfor %}
+{% endfor %}
+"""
+trim = true
+
+[git]
+# Parse Conventional Commit types while retaining useful legacy commit subjects.
+conventional_commits = true
+filter_unconventional = false
+split_commits = false
+protect_breaking_commits = true
+
+commit_parsers = [
+  # Show dependency updates last, before the broader internal-change filters apply.
+  { message = "(?i)^(build|chore)\\(deps(-dev)?\\)!?:", group = "<!-- 7 -->📦 Dependencies" },
+  { message = "(?i)^bump ", group = "<!-- 7 -->📦 Dependencies" },
+
+  # Keep internal-only and automated changes out of user-facing release notes.
+  { message = "(?i)^merge (pull request|branch)", skip = true },
+  { message = "(?i)^(test|style|ci|build|chore)(\\([^)]*\\))?!?:", skip = true },
+
+  # Conventional Commits, including explicit breaking-change markers.
+  { message = "(?i)^[a-z]+(\\([^)]*\\))!:", group = "<!-- 0 -->⚠️ Breaking Changes" },
+  { message = "(?i)^breaking\\b", group = "<!-- 0 -->⚠️ Breaking Changes" },
+  { message = "(?i)^security(\\([^)]*\\))?!?:", group = "<!-- 1 -->🔒 Security" },
+  { message = "(?i)^feat(\\([^)]*\\))?!?:", group = "<!-- 2 -->🚀 Features" },
+  { message = "(?i)^fix(\\([^)]*\\))?!?:", group = "<!-- 3 -->🐛 Bug Fixes" },
+  { message = "(?i)^perf(\\([^)]*\\))?!?:", group = "<!-- 4 -->⚡ Performance" },
+  { message = "(?i)^(refactor|docs)(\\([^)]*\\))?!?:", group = "<!-- 5 -->✨ Improvements" },
+
+  # Classify older, non-conventional subjects already present in the history.
+  { message = "(?i)^(add|implement|introduce|new)\\b", group = "<!-- 2 -->🚀 Features" },
+  { message = "(?i)^(fix|bug|patch)\\b", group = "<!-- 3 -->🐛 Bug Fixes" },
+  { message = "(?i)^(update|upgrade|improve|enhance|change|refactor|clean|remove|delete)\\b", group = "<!-- 5 -->✨ Improvements" },
+  { message = ".*", group = "<!-- 6 -->🔄 Other Changes" },
+]
+
+filter_commits = false
+tag_pattern = "v[0-9].*"
+
+[remote.github]
+owner = "PROJECT_OWNER"
+repo = "PROJECT_REPOSITORY"

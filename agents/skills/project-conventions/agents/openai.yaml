@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Conventions"
+  short_description: "Align project structure, CI, docs, and release tooling"
+  default_prompt: "Use $project-conventions to audit or align this repository with the shared project conventions."
