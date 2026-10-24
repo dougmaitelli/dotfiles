@@ -38,6 +38,12 @@ need application validation too.
 
 ## Job graph
 
+Use standard actions and workflow configuration first. Put small pieces of
+project-specific glue directly in readable `run` steps. Do not create helper
+programs, wrapper layers, custom expression evaluators, or supporting dependency
+sets solely to implement or test workflow selection and release tags. A separate
+script needs a concrete maintenance or reuse benefit, not hypothetical flexibility.
+
 1. A change-detection job produces the selected check/publishing outputs.
 2. Application, browser, and docs jobs run independently when selected.
 3. A final `ci-result` job runs with `always()`. It depends on detection and every
@@ -85,9 +91,11 @@ Keep exact version tags tied to their release artifacts. Moving aliases need
 version-aware behavior: a backport such as `v1.2.4` must not replace `latest`
 or `v1` if `v1.3.0` is already stable. It may advance `v1.2` when it is the newest
 stable patch in that minor series. Likewise, an older-major release must not
-replace aliases for a newer major. Compare SemVer versions, not tag creation
-dates or lexical order; keep GitHub's latest stable release consistent with
-the image's `latest` policy.
+replace aliases for a newer major. For validated stable `vMAJOR.MINOR.PATCH`
+tags, use Git's version ordering (`--sort=-version:refname`), excluding prerelease
+tags, and pass the eligibility flags to Docker's metadata action and the GitHub
+release action. This does not require a standalone SemVer implementation. Keep
+GitHub's latest stable release consistent with the image's `latest` policy.
 
 Preserve release identity when rerunning failed publishing jobs. Do not move an
 existing release tag or silently rebuild it from a different commit. Keep

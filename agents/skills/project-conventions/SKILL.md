@@ -72,6 +72,15 @@ do not ignore the entire docs or test source directory.
 
 ## CI and releases
 
+Prefer established GitHub Actions, their configuration, and short inline workflow
+steps over new helper scripts. Keep release tagging and path selection in the
+workflow when existing actions and basic Git/shell commands are sufficient.
+Do not introduce a general-purpose version parser, workflow-expression evaluator,
+custom validator, or new dependencies just to support a small workflow change.
+Extract a helper only when concrete reuse or substantial logic makes it easier
+to maintain than the inline alternative. Existing build, packaging, and E2E
+runners can still be appropriate; this is not a blanket ban on scripts.
+
 Separate change detection, application validation, browser tests, docs validation,
 and publishing. Keep a stable final required-check job that accounts for
 intentionally skipped jobs and fails on selected-job failures or cancellations.
@@ -180,6 +189,11 @@ Run the checks relevant to the adopted conventions. For CI filters, reason throu
 docs-only, app-only, browser-only, screenshot-only, shared-tooling, version-tag,
 and manual-run cases using the table in the pipeline reference. Verify that all
 independent package lockfiles and Dependabot entries are covered.
+
+Verification does not automatically require new committed test scripts or a test
+framework. Use existing checks and temporary fixtures for small workflow changes.
+If an edge case requires disproportionate machinery, explain the tradeoff and
+keep the implementation within the requested scope.
 
 Report what changed, which checks passed, deliberate exceptions, and remaining
 external setup. Distinguish a successful local build, configured Pages settings,
