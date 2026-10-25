@@ -84,11 +84,17 @@ runners can still be appropriate; this is not a blanket ban on scripts.
 Separate change detection, application validation, browser tests, docs validation,
 and publishing. Keep a stable final required-check job that accounts for
 intentionally skipped jobs and fails on selected-job failures or cancellations.
+Prefer this single overall aggregate and inline publishing conditions; do not add
+an application aggregate solely to deduplicate job dependencies.
 Gate application publishing on change detection and the applicable application,
 browser, and shared-tooling checks directly. Do not make it depend on docs checks,
 Pages deployment, or an aggregate `ci-result` that includes docs. Documentation
 failures still fail the overall CI result, but must not block application images
 or releases when their own checks pass.
+Inspect the commands behind publishing prerequisites too: application formatting,
+lint, and umbrella check commands must not check docs-only sources indirectly.
+Run those docs checks in the existing documentation job, preserving full local
+checks and selecting docs CI when its shared tooling or dependencies change.
 
 Classify source, browser, docs, screenshots, and shared configuration independently.
 Docs-only changes must not publish an application image. Screenshot-only changes

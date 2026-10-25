@@ -58,6 +58,15 @@ script needs a concrete maintenance or reuse benefit, not hypothetical flexibili
    An explicitly requested manual docs deployment can deploy the default branch.
    A version tag validates docs without overwriting the live site.
 
+Keep one overall `ci-result` aggregate and inline publishing conditions. Do not
+add another visible gate solely to share a dependency list. Inspect transitive
+commands as well as `needs`: a publishing prerequisite that runs a formatter or
+linter across `docs/` still lets documentation failures block images. Scope
+application checks to their inputs and move docs formatting/lint into the existing
+docs job; retain full-repository local commands. If docs checks reuse root or
+frontend tooling, install those dependencies there and include their manifests,
+lockfiles, and formatter/linter configuration in the docs selection.
+
 Keep reusable Pages and packaging workflows separate where useful. Give the
 calling job and reusable workflow the permissions actually needed. Use read-only
 defaults, with `packages: write`, `contents: write`, or Pages OIDC permissions
