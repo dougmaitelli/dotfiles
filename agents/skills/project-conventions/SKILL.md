@@ -84,6 +84,11 @@ runners can still be appropriate; this is not a blanket ban on scripts.
 Separate change detection, application validation, browser tests, docs validation,
 and publishing. Keep a stable final required-check job that accounts for
 intentionally skipped jobs and fails on selected-job failures or cancellations.
+Gate application publishing on change detection and the applicable application,
+browser, and shared-tooling checks directly. Do not make it depend on docs checks,
+Pages deployment, or an aggregate `ci-result` that includes docs. Documentation
+failures still fail the overall CI result, but must not block application images
+or releases when their own checks pass.
 
 Classify source, browser, docs, screenshots, and shared configuration independently.
 Docs-only changes must not publish an application image. Screenshot-only changes
@@ -99,8 +104,8 @@ before publishing; a broad `v*` workflow trigger alone is not validation.
 Default-branch application changes publish `:dev`. Stable releases publish their
 exact version, major/minor aliases, and `:latest`; prereleases publish only their
 exact tag and never update stable aliases or GitHub's latest release. Publish
-after required checks pass, assembling architecture images into a multi-platform
-manifest before assigning public tags. See the pipeline reference for examples
+after the required application checks pass, assembling architecture images into
+a multi-platform manifest before assigning public tags. See the pipeline reference for examples
 and protections against older releases replacing newer aliases.
 Do not create tags, push, publish, or change repository settings merely because
 the skill is active; perform those actions only within the user's authorized task.
@@ -189,6 +194,8 @@ Run the checks relevant to the adopted conventions. For CI filters, reason throu
 docs-only, app-only, browser-only, screenshot-only, shared-tooling, version-tag,
 and manual-run cases using the table in the pipeline reference. Verify that all
 independent package lockfiles and Dependabot entries are covered.
+Also verify that an application push can publish when its checks pass and docs
+fail, while an application or browser failure or cancellation still blocks it.
 
 Verification does not automatically require new committed test scripts or a test
 framework. Use existing checks and temporary fixtures for small workflow changes.

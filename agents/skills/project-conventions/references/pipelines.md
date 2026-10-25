@@ -48,9 +48,12 @@ script needs a concrete maintenance or reuse benefit, not hypothetical flexibili
 2. Application, browser, and docs jobs run independently when selected.
 3. A final `ci-result` job runs with `always()`. It depends on detection and every
    validation job, fails for failures/cancellations, and accepts intentional skips.
-4. Application publishing depends on successful validation and actual artifact
-   changes on a default-branch push. A release tag independently selects full
-   validation and publishing. Pull requests only validate.
+4. Application publishing depends directly on change detection and the applicable
+   application, browser, and shared-tooling checks, plus actual artifact changes
+   on a default-branch push. Do not depend on docs, Pages deployment, or an
+   aggregate `ci-result` that includes them. A release tag independently selects
+   full validation and publishing; docs failures still do not gate application
+   artifacts. Pull requests only validate.
 5. Docs deploy after their successful build on a relevant default-branch push.
    An explicitly requested manual docs deployment can deploy the default branch.
    A version tag validates docs without overwriting the live site.
@@ -75,8 +78,14 @@ Use these tags for the application's published container image:
 | Prerelease `v1.3.0-rc.1` | `v1.3.0-rc.1` only | Prerelease; never mark as latest |
 | Pull request, docs-only change, or ordinary manual validation | None | None |
 
-Publish only after all required checks for the selected changes pass. Do not
-publish application artifacts merely because docs validation or deployment ran.
+Publish only after the required application, browser, and shared-tooling checks
+for the selected changes pass. Account for intentional skips, and block publishing
+if change detection fails or any of these prerequisite checks fails or is cancelled.
+Documentation failures must still fail `ci-result`, but must not prevent application
+publishing when its own prerequisites pass. Check this mixed outcome explicitly:
+an application push with passing application checks and failing docs still publishes;
+a subsequent docs-only fix does not publish an image. Do not publish application
+artifacts merely because docs validation or deployment ran.
 Manual publishing requires an explicitly requested publishing workflow, not a
 side effect of a validation dispatch.
 
