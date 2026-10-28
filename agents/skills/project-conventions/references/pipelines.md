@@ -21,6 +21,11 @@ inputs. Avoid using one broad `app` flag for every kind of change.
 | Version tag | Yes | Yes | Yes | Publish tagged images and release assets after validation |
 | Manual validation | As requested, normally all | As requested | As requested | Never publish implicitly |
 
+The browser column applies to relevant PRs, release tags, and manual runs, which
+execute full E2E with screenshot comparisons. Ordinary default-branch pushes skip
+E2E but retain other selected application checks. Direct pushes receive E2E coverage
+only through a later manual run or release. Baseline regeneration stays explicit.
+
 Some established projects deliberately run app checks for screenshot changes;
 preserve that coverage while separating it from artifact publishing if adopting
 the stricter selection above. Do not silently remove test coverage to reduce jobs.
@@ -38,11 +43,7 @@ need application validation too.
 
 ## Job graph
 
-Use standard actions and workflow configuration first. Put small pieces of
-project-specific glue directly in readable `run` steps. Do not create helper
-programs, wrapper layers, custom expression evaluators, or supporting dependency
-sets solely to implement or test workflow selection and release tags. A separate
-script needs a concrete maintenance or reuse benefit, not hypothetical flexibility.
+Keep validation and publication prerequisites explicit:
 
 1. A change-detection job produces the selected check/publishing outputs.
 2. Application, browser, and docs jobs run independently when selected.
@@ -88,7 +89,8 @@ Use these tags for the application's published container image:
 | Pull request, docs-only change, or ordinary manual validation | None | None |
 
 Publish only after the required application, browser, and shared-tooling checks
-for the selected changes pass. Account for intentional skips, and block publishing
+for the selected changes pass. Accept the intentional E2E skip on branch pushes;
+require E2E success for release tags in projects that have browser tests. Block publishing
 if change detection fails or any of these prerequisite checks fails or is cancelled.
 Documentation failures must still fail `ci-result`, but must not prevent application
 publishing when its own prerequisites pass. Check this mixed outcome explicitly:
@@ -226,13 +228,59 @@ entries for a Go/React project are:
 | github-actions | `/` |
 
 For a TypeScript server project, its main package can be `/` instead of separate
-Go and frontend entries. Use a weekly cadence by default, reasonable PR limits,
-and groups that reflect compatibility boundaries. Coupled dependencies must
-update together in the same PR, including React/React DOM and their types,
-Vite and its plugins, ESLint and its shared tooling, and Astro/Starlight.
-Keep Playwright package and
-browser-image versions synchronized, preferably deriving the image version from
-the package rather than maintaining duplicate pins.
+Go and frontend entries. A root lockfile can cover a JavaScript or Cargo workspace;
+do not add overlapping entries for its members. Separate independent application,
+docs, and browser-test packages rather than combining their directories in one
+grouped update entry. Split independently pinned application and browser Docker
+images too. A browser image whose version is derived entirely from Playwright
+does not need a second version pin or a redundant updater entry.
+For pnpm, inspect `pnpm-workspace.yaml` and the lockfile importers: an `e2e/`
+manifest alone does not establish an independent package boundary.
+
+Use weekly schedules without assigning staggered days or times unless requested.
+Set `open-pull-requests-limit: 3` per update entry by default. This bounds open
+version-update PRs per entry, not per repository, and does not limit security PRs.
+Batching reduces total CI runs; the PR limit controls bursts.
+
+Define groups in this order, adapting names and compatibility families to each
+package:
+
+```yaml
+groups:
+  frontend-minor-patch:
+    applies-to: version-updates
+    patterns: ["*"]
+    update-types: [minor, patch]
+  react-major:
+    applies-to: version-updates
+    patterns: [react, react-dom, "@types/react", "@types/react-dom"]
+    update-types: [major]
+  frontend-security:
+    applies-to: security-updates
+    patterns: ["*"]
+```
+
+Dependabot uses the first matching group. The routine group batches patch/minor
+updates across the package; major-family groups keep coupled upgrades together.
+Leave unrelated majors eligible for individual PRs rather than ignoring them.
+Other common families are Vite/plugins, ESLint tooling, Astro/Starlight, Vitest,
+Prettier/plugins, and Playwright packages. Preserve families already justified by
+the project. Keep browser-image versions synchronized with Playwright, preferably
+deriving them from its pinned package version.
+
+Do not restrict the security group to patch/minor fixes: a vulnerability may
+require a major upgrade. Security updates must not wait for the routine weekly
+cadence. Verify repository alerts and automatic security-update settings separately
+from the YAML. When enabling them is within the authorized rollout, publish the
+grouped configuration first, then enable and verify the settings to avoid an
+initial burst of individual security PRs.
+
+Validate YAML against the Dependabot schema, package coverage, group ordering,
+major-update eligibility, unchanged schedules, and applicable repository formatting
+checks. After an authorized push, inspect CI and Dependabot update jobs; distinguish
+configuration errors from existing application or account-limit failures. Review
+existing dependency PRs without bulk-closing them. Measure PR counts and aggregate
+CI time after subsequent weekly cycles rather than promising a savings percentage.
 
 Do not add automatic merge behavior, dependency exclusions, or privileged bot
 workflows unless separately requested. Review existing update policies rather

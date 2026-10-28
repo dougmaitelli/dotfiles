@@ -96,11 +96,10 @@ lint, and umbrella check commands must not check docs-only sources indirectly.
 Run those docs checks in the existing documentation job, preserving full local
 checks and selecting docs CI when its shared tooling or dependencies change.
 
-Classify source, browser, docs, screenshots, and shared configuration independently.
-Docs-only changes must not publish an application image. Screenshot-only changes
-must still run visual regression; do not exclude them from every test filter.
-Prefer keeping that classification separate from runtime artifact publishing.
-Version tags run full validation even when the tagged commit changes only docs.
+Classify application, browser, docs, screenshots, and shared inputs independently
+from runtime artifact publishing. Docs, browser tests, and baselines alone must
+not publish application images. Follow the pipeline reference's path/event matrix;
+version tags select full validation even when the tagged commit changes only docs.
 
 Use git-cliff for release notes, following the pipeline reference. Preserve the
 existing artifact, prerelease, and checksum behavior when integrating it.
@@ -119,15 +118,12 @@ Never move an already-published release tag to retrofit new tooling.
 
 ## Dependabot
 
-Cover every independent package: frontend, docs, browser tests, backend modules,
-Dockerfiles, and GitHub Actions. Group coupled dependencies so compatible versions
-update in the same PR: React/React DOM and their types, Vite/plugins, ESLint
-tooling, Astro/Starlight, and Playwright packages. Keep browser-image versions
-synchronized with Playwright, preferably deriving them from its pinned package
-version. Adapt groups to the actual dependency relationships rather than grouping
-all updates together.
-Do not copy only the production frontend entry and omit docs or `e2e/`.
-Updates must trigger the checks for the package they affect.
+Cover every independent package and ecosystem, including docs and browser tests.
+Batch patch/minor updates per package, keep coordinated major upgrades together,
+and group security fixes separately. Default to weekly updates and three open
+version-update PRs per entry; preserve intentional schedules without introducing
+staggering. See the pipeline reference for workspace boundaries, compatibility
+families, group ordering, security settings, and rollout validation.
 
 ## Documentation and Pages
 
@@ -166,6 +162,10 @@ owner's funding configuration instead.
 
 ## Browser tests and screenshots
 
+- Run full E2E, including screenshot comparisons, on relevant PRs, release tags,
+  and manual runs; skip ordinary default-branch pushes. Backend and dependency
+  changes remain relevant. See the pipeline reference for event and publishing
+  gates. Local UI validation remains complete; baseline regeneration is explicit.
 - Run Playwright against the real built application and API where feasible.
   Simulate external infrastructure at its boundary, using isolated disposable
   data. Keep any reset mechanism restricted to the test harness.
